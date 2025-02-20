@@ -27,6 +27,7 @@ jobs:
             docker run -d \
               --name web-tier \
               -p 8000:8000 \
+              -e FLASK_APP=server.py \
               -e aws_access_key_id=${{ secrets.AWS_ACCESS_KEY_ID }} \
               -e aws_secret_access_key=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
               -e region_name=${{ secrets.AWS_REGION }} \

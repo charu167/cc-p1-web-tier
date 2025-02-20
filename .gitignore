@@ -1,0 +1,6 @@
+face_images_1000
+.env
+
+*.csv
+run.sh
+docker-compose.yaml
