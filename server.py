@@ -37,6 +37,10 @@ app = Flask(__name__)
 
 @app.route("/", methods=['POST'])
 def home():
+    if request.method == 'GET':
+        return "Hello"
+    
+    
     if request.method == 'POST':
         inputFile = request.files['inputFile']  # Access the file using the field name
         bucket_name = '1229855265-in-bucket'
@@ -48,6 +52,7 @@ def home():
         s = f"{s3_file_key}:{res['Attributes'][0]['Value']}"
 
         return s
+    
 
 if __name__ == "__main__":
     app.run(debug=True, port=8000)
