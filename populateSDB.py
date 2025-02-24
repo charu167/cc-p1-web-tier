@@ -13,6 +13,20 @@ sdb_client = boto3.client('sdb',
                         aws_secret_access_key=aws_secret_access_key,
                         region_name=region_name)
 
+def createDomain(domain_name: str):
+    try:
+        domain_created = sdb_client.create_domain(DomainName=domain_name)
+        return domain_created
+    except Exception as e:
+        print(e)
+
+def deleteDomain(domain_name: str):
+    try:
+        domain_deleted = sdb_client.delete_domain(DomainName=domain_name)
+        return domain_deleted
+    except Exception as e:
+        print(e)
+
 class Image:
     def __init__(self, file_name, person_name) -> None:
         self.file_name = file_name
@@ -34,8 +48,10 @@ class Image:
     
 
 if __name__ == '__main__':
+    # deleteDomain(domain_name='1229855265-simpleDB')
+    createDomain(domain_name='1229855265-simpleDB')
     try:
-        csv_file_path = '/Users/charudattapotdar/Desktop/CC/Project1/Project1-1229855265/web-tier/Classification Results on Face Dataset (1000 images).csv'
+        csv_file_path = '/Users/charudattapotdar/Desktop/CC/Project1/web-tier/Classification Results on Face Dataset (1000 images).csv'
         dataframe = pd.read_csv(csv_file_path)
 
         for idx, item in dataframe.iterrows():
